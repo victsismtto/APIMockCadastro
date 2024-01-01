@@ -1,5 +1,6 @@
 package com.mock.cadastro.mockCadastro.service.impl;
 
+import com.mock.cadastro.mockCadastro.exception.NotFoundException;
 import com.mock.cadastro.mockCadastro.mapper.CadastroMapper;
 import com.mock.cadastro.mockCadastro.model.dto.CadastroEntity;
 import com.mock.cadastro.mockCadastro.model.dto.RequestCadastroDTO;
@@ -26,7 +27,7 @@ public class CadastroServiceImpl implements CadastroService {
 
         Optional<CadastroEntity> balanceConsultEntity = consultRepository.findByIdBank(requestDTO.getIdBank());
         if (balanceConsultEntity.isEmpty()) {
-            throw new ClassNotFoundException();
+            throw new NotFoundException();
         }
         ResponseCadastroDTO responseBalanceConsultDTO = accountMapper.toBalanceConsultResponse(balanceConsultEntity.get());
 
